@@ -1,5 +1,7 @@
 
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
+import { useEffect } from 'react';
 
 import './Register.scss'
 
@@ -8,6 +10,13 @@ function Register(props) {
     const handleLogin = () => {
         history.push('/login')
     }
+
+    //tets api
+    useEffect(() => {
+        axios.get("http://localhost:8080/api/test-api").then(data => {
+            console.log(">>> check data axois:", data)
+        })
+    }, [])
     return (
         <div class="register-container py-4">
             <div class="container ">
