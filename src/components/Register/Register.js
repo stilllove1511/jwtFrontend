@@ -2,6 +2,7 @@
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect, useState } from 'react'
+import { toast } from 'react-toastify';
 
 import './Register.scss'
 
@@ -24,7 +25,37 @@ function Register(props) {
         // })
     }, [])
 
+    const isValidInputs = () => {
+        if (!email) {
+            toast.error('Email is invalid')
+            return false
+        }
+        if (!phone) {
+            toast.error('Phone is invalid')
+            return false
+        }
+        if (!username) {
+            toast.error('Username is invalid')
+            return false
+        }
+        if (!password) {
+            toast.error('Password is invalid')
+            return false
+        }
+        if (password != confirmPassword) {
+            toast.error('Your password is not the same')
+            return false
+        }
+        let regx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+        if (!regx.test(email)) {
+            toast.error('Please enter a valid email adress')
+            return false
+        }
+        return true
+    }
+
     const handleRegister = () => {
+        let check = isValidInputs()
         let userData = { email, phone, username, password }
         console.log('>>>check user data:', userData)
     }
