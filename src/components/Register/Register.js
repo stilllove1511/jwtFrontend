@@ -1,11 +1,17 @@
 
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react'
 
 import './Register.scss'
 
 function Register(props) {
+    const [email, setEmail] = useState('')
+    const [phone, setPhone] = useState('')
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('')
+
     let history = useHistory()
     const handleLogin = () => {
         history.push('/login')
@@ -13,10 +19,15 @@ function Register(props) {
 
     //tets api
     useEffect(() => {
-        axios.get("http://localhost:8080/api/test-api").then(data => {
-            console.log(">>> check data axois:", data)
-        })
+        // axios.get("http://localhost:8080/api/test-api").then(data => {
+        //     console.log(">>> check data axois:", data)
+        // })
     }, [])
+
+    const handleRegister = () => {
+        let userData = { email, phone, username, password }
+        console.log('>>>check user data:', userData)
+    }
     return (
         <div class="register-container py-4">
             <div class="container ">
@@ -35,25 +46,36 @@ function Register(props) {
                         </div>
                         <div class="form-group">
                             <label for="email" class="form-label">Email address:</label>
-                            <input type="email" class="form-control" id="email" placeholder='Email' />
+                            <input type="email" class="form-control" id="email" placeholder='Email'
+                                value={email} onChange={(event) => setEmail(event.target.value)}
+                            />
                         </div>
                         <div class="form-group">
                             <label for="phone" class="form-label">Phone number:</label>
-                            <input type="text" class="form-control" id="phone" placeholder='Phone number' />
+                            <input type="text" class="form-control" id="phone" placeholder='Phone number'
+                                value={phone} onChange={(event) => setPhone(event.target.value)}
+                            />
                         </div>
                         <div class="form-group">
                             <label for="Username" class="form-label">Username:</label>
-                            <input type="text" class="form-control" id="Username" placeholder='Username' />
+                            <input type="text" class="form-control" id="Username" placeholder='Username'
+                                value={username} onChange={(event) => setUsername(event.target.value)}
+                            />
                         </div>
                         <div class="form-group">
                             <label for="password" class="form-label">Password:</label>
-                            <input type="password" class="form-control" id="password" placeholder='Password' />
+                            <input type="password" class="form-control" id="password" placeholder='Password'
+                                value={password} onChange={(event) => setPassword(event.target.value)}
+
+                            />
                         </div>
                         <div class="form-group">
                             <label for="Re-enterPassword" class="form-label">Re-enter password:</label>
-                            <input type="password" class="form-control" id="Re-enterPassword" placeholder='Re-enter password' />
+                            <input type="password" class="form-control" id="Re-enterPassword" placeholder='Re-enter password'
+                                value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)}
+                            />
                         </div>
-                        <btn className='btn btn-primary'>Register</btn>
+                        <btn className='btn btn-primary' onClick={() => handleRegister()}>Register</btn>
 
                         <hr />
                         <div className=' text-center'>
