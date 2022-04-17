@@ -1,0 +1,28 @@
+
+.login-container{
+    background-color: #f0f2f5;
+    min-height: 100vh;
+}
+
+.content-left{
+    .brand{
+        font-size: 20px;
+        color: rgb(0, 140, 255);
+    }
+}
+
+.content-right{
+    border: none;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    .brand{
+        color: rgb(0, 140, 255);
+    }
+    a{
+        text-decoration: none;
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+}
