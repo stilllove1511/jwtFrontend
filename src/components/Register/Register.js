@@ -80,10 +80,10 @@ function Register(props) {
         }
     }
     return (
-        <div class="register-container py-4">
-            <div class="container ">
-                <div class="row px-3 px-sm-0">
-                    <div class="content-left col-12 d-none col-sm-7 d-sm-block">
+        <div className="register-container py-4">
+            <div className="container ">
+                <div className="row px-3 px-sm-0">
+                    <div className="content-left col-12 d-none col-sm-7 d-sm-block">
                         <div className='brand'>
                             Hoi Dan IT
                         </div>
@@ -91,38 +91,38 @@ function Register(props) {
                             Hoi Dan It helps you connect and share with the people in your ....
                         </div>
                     </div>
-                    <div class="content-right col-12 col-sm-5 d-flex flex-column gap-3 py-3">
+                    <div className="content-right col-12 col-sm-5 d-flex flex-column gap-3 py-3">
                         <div className='brand text-center d-sm-none'>
                             Hoi Dan IT
                         </div>
-                        <div class="form-group">
-                            <label for="email" class="form-label">Email address:</label>
-                            <input type="email" class={objCheckInput.isValidEmail ? 'form-control' : 'form-control is-invalid'} id="email" placeholder='Email'
+                        <div className="form-group">
+                            <label for="email" className="form-label">Email address:</label>
+                            <input type="email" className={objCheckInput.isValidEmail ? 'form-control' : 'form-control is-invalid'} id="email" placeholder='Email'
                                 value={email} onChange={(event) => setEmail(event.target.value)}
                             />
                         </div>
-                        <div class="form-group">
-                            <label for="phone" class="form-label">Phone number:</label>
-                            <input type="text" class={objCheckInput.isValidPhone ? 'form-control' : 'form-control is-invalid'} id="phone" placeholder='Phone number'
+                        <div className="form-group">
+                            <label for="phone" className="form-label">Phone number:</label>
+                            <input type="text" className={objCheckInput.isValidPhone ? 'form-control' : 'form-control is-invalid'} id="phone" placeholder='Phone number'
                                 value={phone} onChange={(event) => setPhone(event.target.value)}
                             />
                         </div>
-                        <div class="form-group">
-                            <label for="Username" class="form-label">Username:</label>
-                            <input type="text" class='form-control' id="Username" placeholder='Username'
+                        <div className="form-group">
+                            <label for="Username" className="form-label">Username:</label>
+                            <input type="text" className='form-control' id="Username" placeholder='Username'
                                 value={username} onChange={(event) => setUsername(event.target.value)}
                             />
                         </div>
-                        <div class="form-group">
-                            <label for="password" class="form-label">Password:</label>
-                            <input type="password" class={objCheckInput.isValidPassword ? 'form-control' : 'form-control is-invalid'} id="password" placeholder='Password'
+                        <div className="form-group">
+                            <label for="password" className="form-label">Password:</label>
+                            <input type="password" className={objCheckInput.isValidPassword ? 'form-control' : 'form-control is-invalid'} id="password" placeholder='Password'
                                 value={password} onChange={(event) => setPassword(event.target.value)}
 
                             />
                         </div>
-                        <div class="form-group">
-                            <label for="Re-enterPassword" class="form-label">Re-enter password:</label>
-                            <input type="password" class={objCheckInput.isValidConfirmPassword ? 'form-control' : 'form-control is-invalid'} id="Re-enterPassword" placeholder='Re-enter password'
+                        <div className="form-group">
+                            <label for="Re-enterPassword" className="form-label">Re-enter password:</label>
+                            <input type="password" className={objCheckInput.isValidConfirmPassword ? 'form-control' : 'form-control is-invalid'} id="Re-enterPassword" placeholder='Re-enter password'
                                 value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)}
                             />
                         </div>

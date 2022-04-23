@@ -1,6 +1,6 @@
 
 import { useHistory } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { loginUser } from '../../services/userService';
 
@@ -60,6 +60,13 @@ function Login(props) {
             toast.error(response.data.EM)
         }
     }
+
+    useEffect(() => {
+        let session = sessionStorage.getItem('account')
+        if (session) {
+            history.push('/')
+        }
+    }, [])
     return (
         <div className="login-container py-4">
             <div className="container ">
@@ -91,7 +98,7 @@ function Login(props) {
                         <button className='btn btn-primary' onClick={() => handleLogin()}>Login</button>
                         <span className='text-center'>
                             <a href="#">
-                                Forgotten your password?
+                                Forgotten your password???
 
                             </a>
                         </span>
