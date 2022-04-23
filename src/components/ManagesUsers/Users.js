@@ -1,14 +1,19 @@
 import { useState, useEffect } from 'react'
 import ReactPaginate from 'react-paginate'
+import { toast } from 'react-toastify'
 
 import './Users.scss'
-import { fetchAllUser } from '../../services/userService'
+import { fetchAllUser, deleteUser } from '../../services/userService'
+import ModalDelete from './ModalDelete'
 
 function Users(props) {
     const [listUsers, setListUsers] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
     const [currentLimit, setCurrentLimit] = useState(2)
     const [totalPages, setTotalPages] = useState(3)
+
+    const [isShowModalDelete, setIsShowModalDelete] = useState(false)
+    const [dataModal, setDataModal] = useState({})
 
     useEffect(() => {
         fetchUser()
@@ -24,6 +29,27 @@ function Users(props) {
 
     const handlePageClick = async (event) => {
         setCurrentPage(+event.selected + 1)
+    }
+
+    const handleDeleteUser = (user) => {
+        setDataModal(user)
+        setIsShowModalDelete(true)
+    }
+
+    const handleClose = () => {
+        setIsShowModalDelete(false)
+        setDataModal({})
+    }
+
+    const confirmDeleteUser = async (user) => {
+        let response = await deleteUser(dataModal)
+        if (response && response.data.EC === 0) {
+            toast.success(response.data.EM)
+            await fetchUser()
+            setIsShowModalDelete(false)
+        } else {
+            toast.error(response.data.EM)
+        }
     }
     return (
         <>
@@ -52,7 +78,7 @@ function Users(props) {
                                             <td>{item.Group ? item.Group.name : ''}</td>
                                             <td>
                                                 <button className='btn btn-warning'>Edit</button>
-                                                <button className='btn btn-danger'>Delete</button>
+                                                <button className='btn btn-danger' onClick={() => handleDeleteUser(item)}>Delete</button>
                                             </td>
                                         </tr>
                                     )
@@ -89,6 +115,12 @@ function Users(props) {
                     />
                 </div>
             }
+            <ModalDelete
+                show={isShowModalDelete}
+                handleClose={handleClose}
+                confirmDeleteUser={confirmDeleteUser}
+                dataModal={dataModal}
+            />
         </>
     );
 }
