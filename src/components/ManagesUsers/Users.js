@@ -5,6 +5,7 @@ import { toast } from 'react-toastify'
 import './Users.scss'
 import { fetchAllUser, deleteUser } from '../../services/userService'
 import ModalDelete from './ModalDelete'
+import ModalUser from './ModalUser'
 
 function Users(props) {
     const [listUsers, setListUsers] = useState([])
@@ -120,6 +121,9 @@ function Users(props) {
                 handleClose={handleClose}
                 confirmDeleteUser={confirmDeleteUser}
                 dataModal={dataModal}
+            />
+            <ModalUser
+                title={"Create new user"}
             />
         </>
     );
