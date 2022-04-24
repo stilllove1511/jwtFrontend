@@ -12,6 +12,11 @@ const loginUser = (valueLogin, password) => {
     })
 }
 
+const createNewUser = (userData) => {
+    return axios.post(`http://localhost:8080/api/v1/users/create`, { ...userData })
+}
+
+
 const fetchAllUser = (page, limit) => {
     return axios.get(`http://localhost:8080/api/v1/users/read?page=${page}&limit=${limit}`)
 }
@@ -24,4 +29,4 @@ const fetchGroup = () => {
     return axios.get(`http://localhost:8080/api/v1/group/read`)
 }
 
-export { registerNewUser, loginUser, fetchAllUser, deleteUser, fetchGroup }
+export { registerNewUser, loginUser, fetchAllUser, deleteUser, fetchGroup, createNewUser }

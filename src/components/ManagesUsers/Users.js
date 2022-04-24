@@ -16,6 +16,9 @@ function Users(props) {
     const [isShowModalDelete, setIsShowModalDelete] = useState(false)
     const [dataModal, setDataModal] = useState({})
 
+    const [isShowModalUser, setIsShowModalUser] = useState(false)
+
+
     useEffect(() => {
         fetchUser()
     }, [currentPage])
@@ -52,9 +55,15 @@ function Users(props) {
             toast.error(response.data.EM)
         }
     }
+
+    const onHideModalUser = () => {
+        setIsShowModalUser(false)
+    }
     return (
         <>
             <div className='container'>
+                <button className='btn btn-success'>Refresh</button>
+                <button className='btn btn-primary' onClick={() => { setIsShowModalUser(true) }}>Add new user</button>
                 <table class="table">
                     <thead>
                         <tr>
@@ -124,6 +133,8 @@ function Users(props) {
             />
             <ModalUser
                 title={"Create new user"}
+                onHide={onHideModalUser}
+                show={isShowModalUser}
             />
         </>
     );
