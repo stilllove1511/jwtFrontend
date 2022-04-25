@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { toast } from 'react-toastify'
 
 const instance = axios.create({
     baseURL: 'http://localhost:8080/'
@@ -23,7 +24,26 @@ instance.interceptors.response.use(function (response) {
 }, function (error) {
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
-    return Promise.reject(error);
+    const status = error && error.response && error.response.status || 500
+    switch (status) {
+        case 401: {
+            toast.error('Unauthorized the user, please login')
+            return Promise.reject(error)
+        }
+        case 403: {
+            toast.error(`You don't have permission to this recource`)
+            return Promise.reject(error)
+        }
+        case 404: {
+            return Promise.reject(error)
+        }
+        case 405: {
+            return Promise.reject(error)
+        }
+        default: {
+            return Promise.reject(error)
+        }
+    }
 });
 
 export default instance
