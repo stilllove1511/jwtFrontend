@@ -21,6 +21,10 @@ const fetchAllUser = (page, limit) => {
     return axios.get(`http://localhost:8080/api/v1/users/read?page=${page}&limit=${limit}`)
 }
 
+const updateCurrentUser = (userData) => {
+    return axios.put(`http://localhost:8080/api/v1/users/update`, { ...userData })
+}
+
 const deleteUser = (user) => {
     return axios.delete(`http://localhost:8080/api/v1/users/delete`, { data: { id: user.id } })
 }
@@ -29,4 +33,4 @@ const fetchGroup = () => {
     return axios.get(`http://localhost:8080/api/v1/group/read`)
 }
 
-export { registerNewUser, loginUser, fetchAllUser, deleteUser, fetchGroup, createNewUser }
+export { registerNewUser, loginUser, fetchAllUser, deleteUser, fetchGroup, createNewUser, updateCurrentUser }

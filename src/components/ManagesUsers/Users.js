@@ -13,10 +13,14 @@ function Users(props) {
     const [currentLimit, setCurrentLimit] = useState(2)
     const [totalPages, setTotalPages] = useState(3)
 
+    //modal delete
     const [isShowModalDelete, setIsShowModalDelete] = useState(false)
     const [dataModal, setDataModal] = useState({})
 
+    //modal update/create user
     const [isShowModalUser, setIsShowModalUser] = useState(false)
+    const [actionModalUser, setActionModalUser] = useState('CREATE')
+    const [dataModalUser, setDataModalUser] = useState({})
 
 
     useEffect(() => {
@@ -56,14 +60,22 @@ function Users(props) {
         }
     }
 
-    const onHideModalUser = () => {
+    const onHideModalUser = async () => {
         setIsShowModalUser(false)
+        setDataModalUser({})
+        await fetchUser()
+    }
+
+    const handleEditUser = (user) => {
+        setActionModalUser('UPDATE')
+        setDataModalUser(user)
+        setIsShowModalUser(true)
     }
     return (
         <>
             <div className='container'>
                 <button className='btn btn-success'>Refresh</button>
-                <button className='btn btn-primary' onClick={() => { setIsShowModalUser(true) }}>Add new user</button>
+                <button className='btn btn-primary' onClick={() => { setIsShowModalUser(true); setActionModalUser('CREATE') }}>Add new user</button>
                 <table class="table">
                     <thead>
                         <tr>
@@ -87,7 +99,7 @@ function Users(props) {
                                             <td>{item.username}</td>
                                             <td>{item.Group ? item.Group.name : ''}</td>
                                             <td>
-                                                <button className='btn btn-warning'>Edit</button>
+                                                <button className='btn btn-warning' onClick={() => { handleEditUser(item) }}>Edit</button>
                                                 <button className='btn btn-danger' onClick={() => handleDeleteUser(item)}>Delete</button>
                                             </td>
                                         </tr>
@@ -135,6 +147,8 @@ function Users(props) {
                 title={"Create new user"}
                 onHide={onHideModalUser}
                 show={isShowModalUser}
+                action={actionModalUser}
+                dataModalUser={dataModalUser}
             />
         </>
     );
