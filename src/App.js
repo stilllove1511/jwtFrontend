@@ -33,6 +33,7 @@ function App() {
                 width={100}
                 color='#1877f2'
                 ariaLabel="loading"
+                className="rings"
               />
               <div>Loading data ...</div>
             </div>
