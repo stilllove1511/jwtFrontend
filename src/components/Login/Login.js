@@ -58,7 +58,6 @@ function Login(props) {
                 token,
                 account: { email, username, groupWithRoles }
             }
-            sessionStorage.setItem('account', JSON.stringify(data))
             loginContext(data)
             history.push('/users')
         }
@@ -68,12 +67,7 @@ function Login(props) {
         }
     }
 
-    useEffect(() => {
-        let session = sessionStorage.getItem('account')
-        if (session) {
-            history.push('/')
-        }
-    }, [])
+
     return (
         <div className="login-container py-4">
             <div className="container ">

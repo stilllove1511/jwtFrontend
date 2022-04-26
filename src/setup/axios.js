@@ -28,7 +28,7 @@ instance.interceptors.response.use(function (response) {
     switch (status) {
         case 401: {
             toast.error('Unauthorized the user, please login')
-            return Promise.reject(error)
+            return error.response.data
         }
         case 403: {
             toast.error(`You don't have permission to this recource`)

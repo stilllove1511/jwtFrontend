@@ -76,7 +76,7 @@ function Users(props) {
             <div className='container'>
                 <button className='btn btn-success'>Refresh</button>
                 <button className='btn btn-primary' onClick={() => { setIsShowModalUser(true); setActionModalUser('CREATE') }}>Add new user</button>
-                <table class="table">
+                <table className="table">
                     <thead>
                         <tr>
                             <th scope="col">#</th>

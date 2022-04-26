@@ -132,29 +132,29 @@ const ModalUser = (props) => {
                 <Modal.Body>
                     <div className='row content-body'>
                         <div className="col-12 col-sm-6 form-group">
-                            <label for="email" class="form-label">Email address (<span className='red'>*</span>)</label>
+                            <label for="email" className="form-label">Email address (<span className='red'>*</span>)</label>
                             <input
                                 disabled={action === 'CREATE' ? false : true}
                                 className={validInputs.email ? 'form-control' : 'form-control is-invalid'}
-                                type="email" class="form-control" id="email"
+                                type="email" className="form-control" id="email"
                                 value={userData.email}
                                 onChange={(event) => handleOnchangeInput(event.target.value, 'email')}
                             />
                         </div>
                         <div className="col-12 col-sm-6 form-group">
-                            <label for="phone" class="form-label">Phone number (<span className='red'>*</span>)</label>
+                            <label for="phone" className="form-label">Phone number (<span className='red'>*</span>)</label>
                             <input
                                 disabled={action === 'CREATE' ? false : true}
                                 className={validInputs.phone ? 'form-control' : 'form-control is-invalid'}
-                                type="text" class="form-control" id="phone"
+                                type="text" className="form-control" id="phone"
                                 value={userData.phone}
                                 onChange={(event) => handleOnchangeInput(event.target.value, 'phone')}
                             />
                         </div>
                         <div className="col-12 col-sm-6 form-group">
-                            <label for="username" class="form-label">Username</label>
+                            <label for="username" className="form-label">Username</label>
                             <input
-                                type="text" class="form-control" id="username"
+                                type="text" className="form-control" id="username"
                                 value={userData.username}
                                 onChange={(event) => handleOnchangeInput(event.target.value, 'username')}
                             />
@@ -163,10 +163,10 @@ const ModalUser = (props) => {
                             {
                                 action === 'CREATE' && (
                                     <>
-                                        <label for="password" class="form-label">Password (<span className='red'>*</span>)</label>
+                                        <label for="password" className="form-label">Password (<span className='red'>*</span>)</label>
                                         <input
                                             className={validInputs.password ? 'form-control' : 'form-control is-invalid'}
-                                            type="password" class="form-control" id="password"
+                                            type="password" className="form-control" id="password"
                                             value={userData.password}
                                             onChange={(event) => handleOnchangeInput(event.target.value, 'password')}
                                         />
@@ -176,17 +176,17 @@ const ModalUser = (props) => {
 
                         </div>
                         <div className="col-12 form-group">
-                            <label for="address" class="form-label">Address</label>
+                            <label for="address" className="form-label">Address</label>
                             <input
-                                type="text" class="form-control" id="address"
+                                type="text" className="form-control" id="address"
                                 value={userData.address}
                                 onChange={(event) => handleOnchangeInput(event.target.value, 'address')}
                             />
                         </div>
                         <div className="col-12 col-sm-6 form-group">
-                            <label for="sex" class="form-label">Gender</label>
+                            <label for="sex" className="form-label">Gender</label>
                             <select
-                                class="form-select"
+                                className="form-select"
                                 value={userData.sex}
                                 onChange={(event) => handleOnchangeInput(event.target.value, 'sex')}
                             >
@@ -196,7 +196,7 @@ const ModalUser = (props) => {
                             </select>
                         </div>
                         <div className="col-12 col-sm-6 form-group">
-                            <label for="Group" class="form-label">Group (<span className='red'>*</span>)</label>
+                            <label for="Group" className="form-label">Group (<span className='red'>*</span>)</label>
                             <select
                                 className={validInputs.group ? 'form-select' : 'form-select is-invalid'}
                                 value={userData.group}

@@ -33,4 +33,8 @@ const fetchGroup = () => {
     return axios.get(`/api/v1/group/read`)
 }
 
-export { registerNewUser, loginUser, fetchAllUser, deleteUser, fetchGroup, createNewUser, updateCurrentUser }
+const getUserAccount = () => {
+    return axios.get('/api/v1/account')
+}
+
+export { registerNewUser, loginUser, fetchAllUser, deleteUser, fetchGroup, createNewUser, updateCurrentUser, getUserAccount }
