@@ -1,16 +1,16 @@
-import { useState, useEffect } from 'react'
-import ReactPaginate from 'react-paginate'
-import { toast } from 'react-toastify'
+import { useState, useEffect } from "react"
+import ReactPaginate from "react-paginate"
+import { toast } from "react-toastify"
 
-import './Users.scss'
-import { fetchAllUser, deleteUser } from '../../services/userService'
-import ModalDelete from './ModalDelete'
-import ModalUser from './ModalUser'
+import "./Users.scss"
+import { fetchAllUser, deleteUser } from "../../services/userService"
+import ModalDelete from "./ModalDelete"
+import ModalUser from "./ModalUser"
 
 function Users(props) {
     const [listUsers, setListUsers] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
-    const [currentLimit, setCurrentLimit] = useState(2)
+    const [currentLimit, setCurrentLimit] = useState(5)
     const [totalPages, setTotalPages] = useState(3)
 
     //modal delete
@@ -19,9 +19,8 @@ function Users(props) {
 
     //modal update/create user
     const [isShowModalUser, setIsShowModalUser] = useState(false)
-    const [actionModalUser, setActionModalUser] = useState('CREATE')
+    const [actionModalUser, setActionModalUser] = useState("CREATE")
     const [dataModalUser, setDataModalUser] = useState({})
-
 
     useEffect(() => {
         fetchUser()
@@ -67,15 +66,23 @@ function Users(props) {
     }
 
     const handleEditUser = (user) => {
-        setActionModalUser('UPDATE')
+        setActionModalUser("UPDATE")
         setDataModalUser(user)
         setIsShowModalUser(true)
     }
     return (
         <>
-            <div className='container'>
-                <button className='btn btn-success'>Refresh</button>
-                <button className='btn btn-primary' onClick={() => { setIsShowModalUser(true); setActionModalUser('CREATE') }}>Add new user</button>
+            <div className="container">
+                <button className="btn btn-success">Refresh</button>
+                <button
+                    className="btn btn-primary"
+                    onClick={() => {
+                        setIsShowModalUser(true)
+                        setActionModalUser("CREATE")
+                    }}
+                >
+                    Add new user
+                </button>
                 <table className="table">
                     <thead>
                         <tr>
@@ -88,7 +95,7 @@ function Users(props) {
                         </tr>
                     </thead>
                     <tbody>
-                        {listUsers && listUsers.length > 0 ?
+                        {listUsers && listUsers.length > 0 ? (
                             <>
                                 {listUsers.map((item, index) => {
                                     return (
@@ -97,25 +104,41 @@ function Users(props) {
                                             <td>{item.id}</td>
                                             <td>{item.email}</td>
                                             <td>{item.username}</td>
-                                            <td>{item.Group ? item.Group.name : ''}</td>
                                             <td>
-                                                <button className='btn btn-warning' onClick={() => { handleEditUser(item) }}>Edit</button>
-                                                <button className='btn btn-danger' onClick={() => handleDeleteUser(item)}>Delete</button>
+                                                {item.Group
+                                                    ? item.Group.name
+                                                    : ""}
+                                            </td>
+                                            <td>
+                                                <button
+                                                    className="btn btn-warning"
+                                                    onClick={() => {
+                                                        handleEditUser(item)
+                                                    }}
+                                                >
+                                                    Edit
+                                                </button>
+                                                <button
+                                                    className="btn btn-danger"
+                                                    onClick={() =>
+                                                        handleDeleteUser(item)
+                                                    }
+                                                >
+                                                    Delete
+                                                </button>
                                             </td>
                                         </tr>
                                     )
                                 })}
                             </>
-                            :
+                        ) : (
                             <></>
-                        }
-
-
+                        )}
                     </tbody>
                 </table>
             </div>
-            {totalPages > 0 &&
-                <div className='user-footer'>
+            {totalPages > 0 && (
+                <div className="user-footer">
                     <ReactPaginate
                         previousLabel="Previous"
                         nextLabel="Next"
@@ -136,7 +159,7 @@ function Users(props) {
                         activeClassName="active"
                     />
                 </div>
-            }
+            )}
             <ModalDelete
                 show={isShowModalDelete}
                 handleClose={handleClose}
@@ -151,7 +174,7 @@ function Users(props) {
                 dataModalUser={dataModalUser}
             />
         </>
-    );
+    )
 }
 
-export default Users 
+export default Users
